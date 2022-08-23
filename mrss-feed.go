@@ -17,6 +17,11 @@ type Channel struct {
 	Item      []Item   `xml:"item"`
 }
 
+// addItem adds an item to the MRSS feed
+func (c *Channel) AddItem(item Item) {
+	c.Item = append(c.Item, item)
+}
+
 // Feed is the root element of the MRSS feed
 type Feed struct {
 	XMLName xml.Name `xml:"rss"`
@@ -42,11 +47,6 @@ func (m *Feed) ToBytes() ([]byte, error) {
 func (m *Feed) ToString() (string, error) {
 	b, err := m.ToBytes()
 	return string(b), err
-}
-
-// addItem adds an item to the MRSS feed
-func (m *Feed) AddItem(item Item) {
-	m.Channel.Item = append(m.Channel.Item, item)
 }
 
 // New creates a new MRSSFeed ready to be populated
