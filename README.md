@@ -9,7 +9,7 @@ Based on the [Media RSS specification](http://search.yahoo.com/mrss/), but only 
 To install the package:
 
 ```sh
-go get -u github.com/gin-gonic/gin
+go get -u github.com/carrier-labs/go-mrss
 ```
 Import it into your code:
 
