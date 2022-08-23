@@ -39,7 +39,7 @@ type Item struct {
 }
 
 // mimeType returns the MIME type of the file
-func (i Item) MimeType() string {
+func (i *Item) MimeType() string {
 	s := strings.Split(i.Content.Type, "/")
 	if len(s) > 0 {
 		return s[0]
@@ -48,7 +48,7 @@ func (i Item) MimeType() string {
 }
 
 // mimeSubType returns the MIME subtype of the file
-func (i Item) MimeSubType() string {
+func (i *Item) MimeSubType() string {
 	s := strings.Split(i.Content.Type, "/")
 	if len(s) > 1 {
 		return s[1]

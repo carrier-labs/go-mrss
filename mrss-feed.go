@@ -27,7 +27,7 @@ type Feed struct {
 }
 
 // Bytes returns the MRSS feed as XML Bytes
-func (m Feed) ToBytes() ([]byte, error) {
+func (m *Feed) ToBytes() ([]byte, error) {
 	buf := bytes.Buffer{}
 	buf.WriteString(`<?xml version="1.0" encoding="utf-8" ?>`)
 	b, err := xml.Marshal(m)
@@ -39,9 +39,14 @@ func (m Feed) ToBytes() ([]byte, error) {
 }
 
 // Bytes returns the MRSS feed as XML String
-func (m Feed) ToString() (string, error) {
+func (m *Feed) ToString() (string, error) {
 	b, err := m.ToBytes()
 	return string(b), err
+}
+
+// addItem adds an item to the MRSS feed
+func (m *Feed) AddItem(item Item) {
+	m.Channel.Item = append(m.Channel.Item, item)
 }
 
 // New creates a new MRSSFeed ready to be populated
@@ -59,9 +64,4 @@ func New(title string, link string) *Feed {
 			Ttl:       "5",
 		},
 	}
-}
-
-// addItem adds an item to the MRSS feed
-func (m Feed) AddItem(item Item) {
-	m.Channel.Item = append(m.Channel.Item, item)
 }
