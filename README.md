@@ -2,7 +2,7 @@
 
 Helper package to generate MRSS media feeds. Built and tested for Live Feeds in Brightsign players
 
-Based on the [Media RSS specification](http://search.yahoo.com/mrss/), but only to the extent that is needed for Live Feeds.
+Based on the [Media RSS specification](http://search.yahoo.com/mrss/), but only to the extent that is needed for Live Feeds as shown [here](https://support.brightsign.biz/hc/en-us/articles/218067267-Supported-Media-RSS-feeds).
 
 ## Installation
 

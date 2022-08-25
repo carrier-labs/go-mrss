@@ -17,6 +17,7 @@ type Content struct {
 	FileSize string `xml:"fileSize,attr"`
 	Type     string `xml:"type,attr"`
 	Medium   string `xml:"medium,attr"`
+	Duration *int   `xml:"media:duration,omitempty"`
 }
 
 // mrssItem is the item element of the MRSS feed
@@ -47,4 +48,9 @@ func MimeSubType(mime string) string {
 		return s[1]
 	}
 	return ""
+}
+
+// setDuration sets the duration of an image in the MRSS feed
+func (c *Content) SetDuration(duration int) {
+	c.Duration = &duration
 }
