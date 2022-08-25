@@ -7,18 +7,16 @@ import (
 
 // Guid is the guid element of the MRSS Item
 type Guid struct {
-	XMLName     xml.Name `xml:"guid"`
-	Text        string   `xml:",chardata"`
-	IsPermalink string   `xml:"isPermalink,attr"`
+	Text        string `xml:",chardata"`
+	IsPermaLink string `xml:"isPermaLink,attr"`
 }
 
 // Content is the content element of the MRSS Item
 type Content struct {
-	XMLName  xml.Name `xml:"content"`
-	URL      string   `xml:"url,attr"`
-	FileSize string   `xml:"fileSize,attr"`
-	Type     string   `xml:"type,attr"`
-	Medium   string   `xml:"medium,attr"`
+	URL      string `xml:"url,attr"`
+	FileSize string `xml:"fileSize,attr"`
+	Type     string `xml:"type,attr"`
+	Medium   string `xml:"medium,attr"`
 }
 
 // mrssItem is the item element of the MRSS feed
@@ -29,18 +27,13 @@ type Item struct {
 	PubDate     string   `xml:"pubDate"`
 	Link        string   `xml:"link"`
 	Description string   `xml:"description"`
-	Guid        Guid     `xml:"guid"`
-	Content     struct {
-		URL      string `xml:"url,attr"`
-		FileSize string `xml:"fileSize,attr"`
-		Type     string `xml:"type,attr"`
-		Medium   string `xml:"medium,attr"`
-	} `xml:"media:content"`
+	Guid        *Guid    `xml:"guid,omitempty"`
+	Content     *Content `xml:"media:content,omitempty"`
 }
 
 // mimeType returns the MIME type of the file
-func (i *Item) MimeType() string {
-	s := strings.Split(i.Content.Type, "/")
+func MimeType(mime string) string {
+	s := strings.Split(mime, "/")
 	if len(s) > 0 {
 		return s[0]
 	}
@@ -48,8 +41,8 @@ func (i *Item) MimeType() string {
 }
 
 // mimeSubType returns the MIME subtype of the file
-func (i *Item) MimeSubType() string {
-	s := strings.Split(i.Content.Type, "/")
+func MimeSubType(mime string) string {
+	s := strings.Split(mime, "/")
 	if len(s) > 1 {
 		return s[1]
 	}
