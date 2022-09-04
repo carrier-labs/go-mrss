@@ -17,7 +17,7 @@ type Content struct {
 	FileSize string `xml:"fileSize,attr"`
 	Type     string `xml:"type,attr"`
 	Medium   string `xml:"medium,attr"`
-	Duration *int   `xml:"media:duration,omitempty"`
+	Duration *int   `xml:"media:duration,attr,omitempty"`
 }
 
 // mrssItem is the item element of the MRSS feed
